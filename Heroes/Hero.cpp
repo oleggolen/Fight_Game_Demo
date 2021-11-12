@@ -25,9 +25,10 @@ void Hero::receiveDamage(unsigned int damage)
     }
 }
 
-Hero::Hero(string  name,unsigned int hp, unsigned int power, unsigned int protection) : _name(move(name)),_hp(hp), _power(power),
+Hero::Hero(string  name,unsigned int hp, unsigned int power, unsigned int protection, const string& weapon) : _name(move(name)),_hp(hp), _power(power),
 _protection(protection)
 {
+    _weapon = weaponFactory.Create(weapon);
 
 }
 
@@ -47,9 +48,14 @@ void Hero::Attack(Hero &hero)
         cout << hero._name << " is dead" << endl;
         return;
     }
-    hero.receiveDamage(_power);
+    hero.receiveDamage(_power + _weapon->getDamage());
 }
 
 const string &Hero::getName() const noexcept {
     return _name;
+}
+
+Hero::~Hero() {
+    delete _weapon;
+
 }

@@ -1,6 +1,9 @@
 #ifndef FIGHT_GAME_DEMO_HERO_H
 #define FIGHT_GAME_DEMO_HERO_H
 #include<string>
+#include "../Equipment/Weapons/Weapon.h"
+#include "../Factories/WeaponFactory.h"
+
 using namespace std;
 
 class Hero {
@@ -10,14 +13,16 @@ private:
     unsigned int _protection;
     string _name;
     void receiveDamage(unsigned int damage);
+    Weapon* _weapon;
+    WeaponFactory weaponFactory;
 
 protected:
-    Hero(string  name, unsigned int hp, unsigned int power, unsigned int protection);
+    Hero(string  name, unsigned int hp, unsigned int power, unsigned int protection, const string& weapon);
 public:
     unsigned int getHp() const noexcept;
     void Attack(Hero& hero);
     const string& getName() const noexcept;
-
+    virtual ~Hero();
 };
 
 
