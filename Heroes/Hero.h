@@ -2,7 +2,7 @@
 #define FIGHT_GAME_DEMO_HERO_H
 #include<string>
 #include "../Equipment/Weapons/Weapon.h"
-#include "../Factories/WeaponFactory.h"
+#include "../Factories/Weapon/WeaponFactory.h"
 
 using namespace std;
 
@@ -14,10 +14,10 @@ private:
     string _name;
     void receiveDamage(unsigned int damage);
     Weapon* _weapon;
-    WeaponFactory weaponFactory;
+    WeaponFactory* _weaponFactory;
 
 protected:
-    Hero(string  name, unsigned int hp, unsigned int power, unsigned int protection, const string& weapon);
+    Hero(string  name, unsigned int hp, unsigned int power, unsigned int protection, const string& weapon, WeaponFactory* weaponFactory);
 public:
     unsigned int getHp() const noexcept;
     void Attack(Hero& hero);

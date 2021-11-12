@@ -25,10 +25,10 @@ void Hero::receiveDamage(unsigned int damage)
     }
 }
 
-Hero::Hero(string  name,unsigned int hp, unsigned int power, unsigned int protection, const string& weapon) : _name(move(name)),_hp(hp), _power(power),
+Hero::Hero(string  name,unsigned int hp, unsigned int power, unsigned int protection, const string& weapon, WeaponFactory* weaponFactory) : _name(move(name)),_hp(hp), _power(power),
 _protection(protection)
 {
-    _weapon = weaponFactory.Create(weapon);
+    _weapon = _weaponFactory->Create(weapon);
 
 }
 
